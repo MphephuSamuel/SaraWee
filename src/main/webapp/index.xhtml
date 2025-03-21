@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>User Form</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <!-- Name Field -->
+            <h:outputLabel for="name" value="Name" />
+            <h:inputText id="name" value="#{userBean.name}" required="true">
+                <f:validateLength minimum="3" />
+            </h:inputText>
+
+            <h:message for="name" style="color:red" />
+
+            <!-- Address Field -->
+            <h:outputLabel for="address" value="Address" />
+            <h:inputText id="address" value="#{userBean.address}" required="true" />
+
+            <h:message for="address" style="color:red" />
+
+            <!-- Phone Number Field -->
+            <h:outputLabel for="phoneNumber" value="Phone Number" />
+            <h:inputText id="phoneNumber" value="#{userBean.phoneNumber}" required="true" />
+
+            <h:message for="phoneNumber" style="color:red" />
+
+            <!-- Save Button -->
+            <h:commandButton value="Save User" action="#{userBean.saveUser}" />
+
+        </h:form>
+
+        <!-- Display List of Users -->
+        <h:form>
+            <h:dataTable value="#{userBean.allUsers}" var="user">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{user.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    #{user.userDetails.address}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Phone Number</f:facet>
+                    #{user.userDetails.phoneNumber}
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
